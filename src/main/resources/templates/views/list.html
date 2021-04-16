@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <script src="../../static/function.js"></script>
@@ -8,20 +8,60 @@
 </head>
 <body>
 <div>
-    <h1>List</h1>
-    <table id="emp" border="1">
-        <tr>
-            <th>Name</th>
-            <th>Email</th>
-            <th>jobTitle</th>
-            <th>Phone</th>
-            <th>imageUrl</th>
-            <th>employeeCode</th>
-        </tr>
-        <button onclick="showList()">Show</button>
-        <tbody id="list">
-        </tbody>
-    </table>
+    <div>
+        <form id="add-employee">
+            <table>
+                <tr>
+                    <td>Name:</td>
+                    <td><input type="text" id="name" placeholder="Name"></td>
+                </tr>
+                <tr>
+                    <td>Email:</td>
+                    <td><input type="text" id="email" placeholder="Email"></td>
+                </tr>
+                <tr>
+                    <td>jobTitle:</td>
+                    <td><input type="text" id="jobTitle" placeholder="jobTitle"></td>
+                </tr>
+                <tr>
+                    <td>Phone:</td>
+                    <td><input type="text" id="phone" placeholder="phone"></td>
+                </tr>
+                <tr>
+                    <td>imageUrl:</td>
+                    <td><input type="text" id="imageUrl" placeholder="imageUrl"></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td><input type="submit" value="Add" onclick="addEmployee()"></td>
+                </tr>
+            </table>
+        </form>
+    </div>
+
+    <div>
+        <h1>List</h1>
+        <table id="emp" border="1">
+            <tr>
+                <th>Name</th>
+                <th>Email</th>
+                <th>jobTitle</th>
+                <th>Phone</th>
+                <th>imageUrl</th>
+                <th>employeeCode</th>
+            </tr>
+            <th:block th:each="emp:${employees}">
+                <tr>
+                    <td th:text="${emp.name}"></td>
+                    <td th:text="${emp.email}"></td>
+                    <td th:text="${emp.jobTitle}"></td>
+                    <td th:text="${emp.phone}"></td>
+                    <td th:text="${emp.imageUrl}"></td>
+                    <td th:text="${emp.employeeCode}"></td>
+                </tr>
+            </th:block>
+        </table>
+    </div>
 </div>
 </body>
 </html>

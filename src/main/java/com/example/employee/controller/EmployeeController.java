@@ -21,7 +21,9 @@ public class EmployeeController {
 
     @GetMapping("views")
     public ModelAndView shows() {
-        return new ModelAndView("views/list");
+       ModelAndView model = new ModelAndView("views/list");
+       model.addObject("employees",employeeService.findAll());
+       return model;
     }
 
     @GetMapping("/all")
